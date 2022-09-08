@@ -24,13 +24,14 @@
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     
     <div class="container">
-    <h3 style="left: 50%;">Student info</h3>
+    <h3>Student Attendance list</h3>
     <hr>
-    <table id="example" class="table table-hover" style="width:100%">
+    <table id="example" class="table table-striped table-hover" >
         <thead>
             <tr>
                 <th>Name</th>
@@ -43,7 +44,7 @@
             </tr>
 
         </thead>
-       
+        <tbody>
         <?php
             $stmt = $conn->query("SELECT * FROM tb_students");
             $stmt->execute();
@@ -51,7 +52,7 @@
             $users = $stmt->fetchAll();
             foreach($users as $user){     
         ?>
-        <tbody>
+        
             <tr>
                 <td><?php echo $user['name']?></td>
                 <td><?php echo $user['studentid']?></td>
@@ -61,23 +62,23 @@
                 <td><?php echo $user['time']?></td> 
                 <td><?php echo $user['percent']?></td>
             </tr>
-            <?php
-                };
-            
-            ?>
+        <?php
+            };
+        ?>
         </tbody>
 
-    
+
     </table>
 
     </div>
     
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    
+    <script src="https://cdn.datatables.net/fixedheader/3.2.4/js/dataTables.fixedHeader.min.js"></script>
+     
     
     <script type="text/javascript">
-       $(document).ready(function() {
+      $(document).ready(function() {
     // Setup - add a text input to each footer cell
     $('#example thead tr').clone(true).addClass('filters').appendTo( '#example thead' );
     var table = $('#example').DataTable( {

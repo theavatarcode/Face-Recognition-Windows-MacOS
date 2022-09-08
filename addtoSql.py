@@ -55,12 +55,7 @@ while True:
                 val = (onlyname, stdId, id, classes, date, time, face_percent)
                 mycursor.execute(sql,val)
                 
-
-                
-                
-                
-                    
-            
+         
             if name == "Unknown":
                 color = [46,2,209]
             else : 
@@ -71,7 +66,6 @@ while True:
             cv2.putText(frame, onlyname, (left+6,top-6), font, 0.8, (255,255,255), 1)
             cv2.putText(frame, str(face_percent) + "%", (left+6,bottom+26), font, 0.6, (255,255,255), 1)
         
-    
     cv2.imshow("FaceRecognition by M6/3", frame)
     if cv2.waitKey(1) & 0xFF == ord("q"):
         break

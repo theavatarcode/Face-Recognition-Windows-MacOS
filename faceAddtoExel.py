@@ -31,7 +31,9 @@ def start():
     while True:
         
         ret, frame = cap.read()
-        dt_now = str(dt.datetime.now())  
+        realtimedate = dt.datetime.now()
+        dt_now = str(realtimedate.strftime("%Y-"))
+        
         face_locate = []
         
         
