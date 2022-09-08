@@ -56,18 +56,19 @@ class SimpleFacerec:
         return face_locations.astype(int), face_names, percent
 
     def getClassesFrom(self, name):
-        classes = str(name[0:3])
+        classes = str(name[5:8])
         return classes
     
     def getNumberFrom(self, n):
-        number = str(n[4:6])
+        number = str(n[9:11])
         return number
     
     def getNameFrom(self, n):
-        onlyName = str(n[7:])
+        onlyName = str(n[12:])
         return onlyName
     
-
-
+    def getStudentIdFrom(self, n):
+        studentid = str(n[0:4])
+        return studentid
 
 

@@ -11,7 +11,7 @@ sg.theme('LightGrey1')
 font = ("Verdana", 14)
 layout = [  [sg.Text('Add images to system. File must be only .JPG',font= font), sg.Button('Capture from Webcam',font=font)],
             [sg.Text('Path of Images',font=font), sg.InputText(key='-in-', do_not_clear=False,font=font), sg.FileBrowse(file_types= (("image","*.JPG*"),),font=font), sg.Button('Open',font=font),sg.Button('Delete',font=font)],
-            [sg.Text('Name',font=font),sg.InputText(key = '-name-',size=(20,1), do_not_clear= False,font=font), sg.Text('ID',font=font), sg.InputText(key='-id-',size= (3,1), do_not_clear= False,font=font), sg.Text('Classroom (Ex. 6-3, 6-2, 6-1)',font=font), sg.InputText(key='-class-',size=(10,1),do_not_clear= False,font=font)],
+            [sg.Text('Name',font=font),sg.InputText(key = '-name-',size=(20,1), do_not_clear= False,font=font), sg.Text('Student-ID',font=font), sg.InputText(key='-StudentID-',size= (7,1), do_not_clear= False,font=font), sg.Text('Class-ID',font=font), sg.InputText(key='-id-',size= (3,1), do_not_clear= False,font=font), sg.Text('Classroom (Ex. 6-3, 6-2, 6-1)',font=font), sg.InputText(key='-class-',size=(5,1),do_not_clear= False,font=font)],
             [sg.Text('Register face to system.',font=font),sg.Button('Upload',font=font)],
             [sg.VerticalSeparator(color=(0,0,0))],
             [sg.HorizontalSeparator(color=(0,0,0))],
@@ -37,10 +37,11 @@ while True:
         else:
             id = str(values['-id-'])
         classes = str(values['-class-'])
+        stdId = str(values['-StudentID-'])
         old_name = values['-in-']
         try:
             
-            locate_of_image = f"{image_folder}/{classes}_{id}_{name}.jpg" ## Path Fix!!!
+            locate_of_image = f"{image_folder}/{stdId}_{classes}_{id}_{name}.jpg" ## Path Fix!!!
             s.move(old_name, locate_of_image)
             sg.popup(f'image uploaded! move to {locate_of_image}')
         except:
@@ -52,7 +53,6 @@ while True:
             faceAddtoExel.start()
         except:
             sg.popup('Error to Run!')
-
     if event == 'OpenFolderExcel':
         os.system(f'start {os.path.realpath(real_path_excelData)}')
 
