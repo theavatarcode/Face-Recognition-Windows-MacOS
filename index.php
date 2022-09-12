@@ -28,49 +28,52 @@
 </head>
 <body>
     
-    <div class="container">
-    <h3>Student Attendance list</h3>
-    <hr>
-    <table id="example" class="table table-striped table-hover" >
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Student-ID</th>
-                <th>Class-ID</th>
-                <th>Class</th>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Percent</th>
-            </tr>
-
-        </thead>
-        <tbody>
-        <?php
-            $stmt = $conn->query("SELECT * FROM tb_students");
-            $stmt->execute();
-
-            $users = $stmt->fetchAll();
-            foreach($users as $user){     
-        ?>
+    
+    
         
-            <tr>
-                <td><?php echo $user['name']?></td>
-                <td><?php echo $user['studentid']?></td>
-                <td><?php echo $user['classid']?></td>
-                <td><?php echo $user['class']?></td>
-                <td><?php echo $user['date']?></td>
-                <td><?php echo $user['time']?></td> 
-                <td><?php echo $user['percent']?></td>
-            </tr>
-        <?php
-            };
-        ?>
-        </tbody>
+        <h3>Students Attendance list</h3>
+        <hr>
+        <div class="">
+            <div class="text-center">
+            <div class="container">
+                <table id="example" class="table table-hover table-responsive table-sm">
+                    <thead>
+                        <tr class="table table-dark table-sm">
+                            <th>Name</th>
+                            <th>Student-ID</th>
+                            <th>Class-ID</th>
+                            <th>Class</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Percent</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php
+                        $stmt = $conn->query("SELECT * FROM tb_students");
+                        $stmt->execute();
 
-
-    </table>
-
-    </div>
+                        $users = $stmt->fetchAll();
+                        foreach($users as $user){     
+                    ?>  
+                        <tr>
+                            <td class="table-success"><?php echo $user['name']?></td>
+                            <td class="table-success"><?php echo $user['studentid']?></td>
+                            <td class="table-secondary"><?php echo $user['classid']?></td>
+                            <td class="table-secondary"><?php echo $user['class']?></td>
+                            <td class="table-secondary"><?php echo $user['date']?></td>
+                            <td class="table-danger"><?php echo $user['time']?></td> 
+                            <td class="table-warning"><?php echo $user['percent']?></td>
+                        </tr>
+                    <?php
+                        };
+                    ?>
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    
     
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
@@ -84,6 +87,9 @@
     var table = $('#example').DataTable( {
         orderCellsTop: true,
         fixedHeader: true,
+        columnDefs: [
+            {"width" : "5%", "target" : [1,2]}
+        ],
         initComplete: function() {
             var api = this.api();
             // For each column
@@ -91,7 +97,7 @@
                 // Set the header cell to contain the input element
                 var cell = $('.filters th').eq($(api.column(colIdx).header()).index());
                 var title = $(cell).text();
-                $(cell).html( '<input type="text" placeholder="'+title+'" />' );
+                $(cell).html( '<input type="text" style="width:160px" placeholder="'+title+'" />' );
                 // On every keypress in this input
                 $('input', $('.filters th').eq($(api.column(colIdx).header()).index()) )
                     .off('keyup change')

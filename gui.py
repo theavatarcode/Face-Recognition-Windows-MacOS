@@ -6,8 +6,9 @@ import faceAddtoExel
 import cv2
 from cv2 import VideoCapture
 import webbrowser as wb
+import addtoSql
 
-sg.theme('LightGrey1')
+sg.theme('LightBrown8')
 font = ("Verdana", 14)
 layout = [  [sg.Text('Add images to system. File must be only .JPG',font= font), sg.Button('Capture from Webcam',font=font)],
             [sg.Text('Path of Images',font=font), sg.InputText(key='-in-', do_not_clear=False,font=font), sg.FileBrowse(file_types= (("image","*.JPG*"),),font=font), sg.Button('Open',font=font),sg.Button('Delete',font=font)],
@@ -16,8 +17,8 @@ layout = [  [sg.Text('Add images to system. File must be only .JPG',font= font),
             [sg.VerticalSeparator(color=(0,0,0))],
             [sg.HorizontalSeparator(color=(0,0,0))],
             [sg.VerticalSeparator(color=(0,0,0))],
-            [sg.StatusBar('Warming : Start Face-Recognition will start Excel attendance list too. ',key='-l-'),sg.Button('Start Face-Recognition',font=font), sg.Button('Cancel',font=font)],
-            [sg.Text('Attendances list have save in Excel, You can open files here',font=font), sg.Button('OpenFolderExcel',font=font),sg.StatusBar('Support : Window7 64-bit, Window10 64-bit, MacOS')]]
+            [sg.StatusBar('Warming : Start Face-Recognition will start Excel attendance list too. ',key='-l-'),sg.Button('Start Face-Recognition',font=font), sg.Button('Cancel',font=font)]]
+            # [sg.Text('Attendances list have save in Excel, You can open files here',font=font), sg.Button('OpenFolderExcel',font=font),sg.StatusBar('Support : Window7 64-bit, Window10 64-bit, MacOS')]]
 icon = os.path.realpath('icon/ip-camera.ico')
 excel = 'ExcelData' ## Path Fix!!!!
 real_path_excelData = os.path.realpath(excel)
@@ -50,7 +51,7 @@ while True:
     if event == 'Start Face-Recognition':
         sg.popup('Wait for endcoding images....')
         try:
-            faceAddtoExel.start()
+            addtoSql.start()
         except:
             sg.popup('Error to Run!')
     if event == 'OpenFolderExcel':
