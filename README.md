@@ -15,12 +15,12 @@ Support window, MacOS
  python gui.py
 ```
 
-##interface
+## interface
 
 ![interface facerec](https://user-images.githubusercontent.com/95271718/193448055-5a42971b-e377-4ed7-af70-5447a3de0f07.PNG)
 
 
-##Example Saveing Data
+## Example Saveing Data
 
 - In Excel 
 
