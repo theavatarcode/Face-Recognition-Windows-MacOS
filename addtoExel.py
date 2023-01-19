@@ -84,4 +84,4 @@ def start():
 
 if __name__ =='__main__':
 
-    print('Run program on gui.py file I-SUS.')
+    None

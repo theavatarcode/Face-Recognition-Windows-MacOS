@@ -1,8 +1,8 @@
 import shutil as s
-from tkinter import image_types
+import tkinter
 import PySimpleGUI as sg
 import os
-import faceAddtoExel
+
 import cv2
 from cv2 import VideoCapture
 import webbrowser as wb
